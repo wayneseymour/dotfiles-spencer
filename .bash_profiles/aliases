@@ -1,0 +1,2 @@
+alias kbn="cd $DEV_ROOT/es/kibana"
+alias esjs="cd $DEV_ROOT/es/elasticsearch-js"
