@@ -1,5 +1,5 @@
 if [[ "$ES_VERSIONS" == "" ]]; then
-  export ES_VERSIONS=$HOME/.esversions
+  export ES_VERSIONS=$HOME/.esvm
 fi
 
 if [[ "$ES_DEFAULT_REF" == "" ]]; then
