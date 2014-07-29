@@ -22,7 +22,6 @@ sources=(
   "$HOME/.bash_profiles/go"
   "$HOME/.bash_profiles/java"
   "$HOME/.bash_profiles/git-completion"
-  # "$HOME/.bash_profiles/dirs"
   "$HOME/.bash_profiles/ps1"
   "$HOME/.bash_profiles/aliases"
 
