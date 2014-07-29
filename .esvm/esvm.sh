@@ -14,7 +14,7 @@ fi
 ##
 # start the default verision of es
 ##
-function es {
+function esvm {
   local cmd=$1
   shift
 
@@ -123,7 +123,7 @@ function es {
       return
     fi
 
-    echo "$bin" \
+    "$bin" \
       -Des.script.disable_dynamic=true \
       -Des.cluster.name=spencer \
       -Des.discovery.zen.ping.multicast.enabled=false \
