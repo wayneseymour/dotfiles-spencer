@@ -5,7 +5,3 @@
 ##
 ###
 source ~/.bashrc
-
-# fortune of the day
-fortune -a
-echo ""
