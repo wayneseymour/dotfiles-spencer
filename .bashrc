@@ -19,7 +19,7 @@ export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 ##
 ####
 export ES_VERSIONS=$HOME/.esvm
-export ES_DEFAULT_REF='1.2'
+export ES_DEFAULT_REF='master'
 
 ####
 ##
