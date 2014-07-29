@@ -1,0 +1,6 @@
+LAST_GIT_SAVE=`cat /${TMPDIR:-/tmp}/last_git_save 2> /dev/null`
+if [ -n "$LAST_GIT_SAVE" ]; then
+  git reset --hard $LAST_GIT_SAVE;
+else
+  echo "restore can only be used after 'git save' was called"
+fi

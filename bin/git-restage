@@ -1,0 +1,9 @@
+gitFiles=$(git status --porcelain | grep "^[ADM\?][AMD] " | sed -e "s|^[ADM\?][AMD] ||")
+if [[ -n "${gitFiles}" ]] ; then
+  for fname in $gitFiles ; do
+    git add --all -- "${fname}"
+    echo "Restaging ${fname}"
+  done
+else
+  echo "No files changed"
+fi

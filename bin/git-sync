@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+if [[ -n $1 ]]; then remote=$1; else remote='upstream'; fi
+if [[ -n $2 ]]; then branch=$2; else branch='master'; fi
+
+git fetch "$remote"
+git rebase "$remote/$branch"

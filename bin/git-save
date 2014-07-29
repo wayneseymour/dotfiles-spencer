@@ -1,0 +1,9 @@
+git add -A
+
+if [ `git log -1 --pretty=%B` == 'save' ]; then
+  git commit --amend --no-edit
+else
+  git commit -m "save"
+fi
+
+git log -1 --pretty=%H > /${TMPDIR:-/tmp}/last_git_save

@@ -1,0 +1,22 @@
+#!/usr/bin/env ruby
+
+slug = ARGF.argv[0]
+parts = slug.split ':'
+prUser = parts[0]
+prBranch = parts[1]
+
+userAndRepoRE = /([^:\/]+)\/([^\/]+)(?:.git|$)/
+originUrl = `git config --get remote.origin.url`
+originMatches = originUrl.match(userAndRepoRE)
+
+if !originMatches
+  puts "unable to parse remote.origin.url #{originUrl}"
+  exit
+end
+
+originUser = originMatches[1]
+originProj = originMatches[2]
+
+`git remote rm pr`
+`git remote add pr -f -t #{prBranch} git@github.com:#{prUser}/#{originProj}`
+`git checkout pr/#{prBranch} -B pr`
