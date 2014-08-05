@@ -43,6 +43,7 @@
   l = "!source ~/.githelpers && pretty_git_log"
   la = !git l --all
   todo = grep --heading --break --ignore-case -e ' FIX: *' -e ' TODO: *'
+  pr = "!f() { git fetch upstream pull/$1/head:pr/$1; }; f"
 
 [push]
 	default = current
