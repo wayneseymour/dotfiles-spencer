@@ -44,6 +44,7 @@ function esvm {
 
     case $level in
     "sta") local color=$yellow ;;
+    "info") local color=$yellow ;;
     "suc") local color=$green  ;;
     *)     local color=$red    ;;
     esac
@@ -152,8 +153,35 @@ function esvm {
   ##
   function cmd-update {
     local ref=$1
-    cmd-remove "$ref"
+
+    check-ref "$ref"
+    if [[ "$?" != "0" ]]; then
+      return
+    fi
+
+    local backupdatadir="${ES_VERSIONS}/.updating-install-data"
+    local existingdatadir="${ES_VERSIONS}/${ref}/data"
+
+    if [ -d "$backupdatadir" ]; then
+      log err "update in progress or previous did not clean up the .data directory"
+      return
+    fi
+
+    if [ -d "$existingdatadir" ]; then
+      log info "existing install found, backing up data"
+      mv "$existingdatadir" "$backupdatadir"
+      cmd-remove "$ref"
+    else
+      log error "no exising install found"
+      return
+    fi
+
     cmd-install "$ref"
+
+    if [ -d "$backupdatadir" ]; then
+      rm -rf "$existingdatadir"
+      mv "$backupdatadir" "$existingdatadir"
+    fi
   }
 
   ##
