@@ -1,5 +1,5 @@
 #!/bin/bash
-export DEV_ROOT=$HOME/code
+export DEV_ROOT=$HOME/dev
 
 ####
 ##
@@ -15,14 +15,6 @@ export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 ####
 ##
-#   ES Version Manager config
-##
-####
-export ES_VERSIONS=$HOME/.esvm
-export ES_DEFAULT_REF='master'
-
-####
-##
 #   INCLUDE SOME ENV SPECIFIC CONFIGS
 ##
 ####
@@ -32,12 +24,12 @@ sources=(
   "$HOME/.bash_profiles/git-completion"
   "$HOME/.bash_profiles/ps1"
   "$HOME/.bash_profiles/aliases"
+  "$HOME/.bash_profiles/dev-server"
 
-  "$HOME/.esvm/esvm.sh"
   "$HOME/.nvm/nvm.sh"
-  # "$HOME/.bash_profiles/mongo"
-  # "$HOME/.rvm/scripts/rvm"
-  # "$HOME/.travis/travis.sh"
+  "$HOME/.bash_profiles/mongo"
+  "$HOME/.rvm/scripts/rvm"
+  "$HOME/.travis/travis.sh"
 )
 
 for i in "${sources[@]}"
