@@ -35,6 +35,7 @@ sources=(
 
   "$HOME/.esvm/esvm.sh"
   "$HOME/.nvm/nvm.sh"
+  # "$HOME/.bash_profiles/mongo"
   # "$HOME/.rvm/scripts/rvm"
   # "$HOME/.travis/travis.sh"
 )
