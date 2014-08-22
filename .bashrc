@@ -27,7 +27,7 @@ sources=(
   "$HOME/.bash_profiles/dev-server"
 
   "$HOME/.nvm/nvm.sh"
-  "$HOME/.bash_profiles/mongo"
+  "$HOME/.bash_profiles/mongo/mongod"
   "$HOME/.rvm/scripts/rvm"
   "$HOME/.travis/travis.sh"
 )
