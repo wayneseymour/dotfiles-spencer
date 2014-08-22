@@ -15,14 +15,6 @@ export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 ####
 ##
-#   ES Version Manager config
-##
-####
-export ES_VERSIONS=$HOME/.esvm
-export ES_DEFAULT_REF='1.2'
-
-####
-##
 #   INCLUDE SOME ENV SPECIFIC CONFIGS
 ##
 ####
@@ -33,7 +25,6 @@ sources=(
   "$HOME/.bash_profiles/ps1"
   "$HOME/.bash_profiles/aliases"
 
-  "$HOME/.esvm/esvm.sh"
   "$HOME/.nvm/nvm.sh"
   # "$HOME/.bash_profiles/mongo/mongo"
   # "$HOME/.rvm/scripts/rvm"
