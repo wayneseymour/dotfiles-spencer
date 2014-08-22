@@ -1,5 +1,0 @@
-#!bash
-
-MONGOD=`which mongod`
-
-alias mongod="$MONGOD --config /usr/local/etc/mongod.conf"

@@ -1,0 +1,8 @@
+#!bash
+
+MONGOD="$(which mongod)"
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+function mongod {
+  "$MONGOD" --config "${DIR}/mongo.conf"
+}
