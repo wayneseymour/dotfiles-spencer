@@ -21,6 +21,7 @@ export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 sources=(
   "$HOME/.bash_profiles/go"
   "$HOME/.bash_profiles/java"
+  "$HOME/.bash_profiles/chromium"
   "$HOME/.bash_profiles/git-completion"
   "$HOME/.bash_profiles/ps1"
   "$HOME/.bash_profiles/aliases"
