@@ -11,7 +11,15 @@ parse_git_branch (){
   else
       return 0
   fi
-  echo -e "[$(branch_color)${gitver}${c_sgr0}] "
+
+  status="[$(branch_color)${gitver}${c_sgr0}]"
+
+  git_stash="$(git stash list 2> /dev/null)"
+  if [[ ! ${#git_stash} -eq 0 ]]; then
+      status="${status} ☢"
+  fi
+
+  echo -e "$status "
 }
 
 branch_color (){
@@ -30,7 +38,5 @@ branch_color (){
   echo -ne "$color"
 }
 
-#Branch First
-#PS1='[\[$(branch_color)\]$(parse_git_branch)\[${c_sgr0}\]] \u@\[${c_red}\]\w\[${c_sgr0}\]: '
-#Branch Last
+# shellcheck disable=2016
 PS1='\W $(parse_git_branch)\$ '
