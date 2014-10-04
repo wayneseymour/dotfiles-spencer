@@ -10,8 +10,7 @@ export PATH=./node_modules/.bin:$PATH
 export PATH=$HOME/bin:$PATH
 export PATH=/usr/local/sbin:$PATH
 export PATH=/usr/local/bin:$PATH
-export PATH="$PATH:/usr/local/heroku/bin"
-export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+export PATH="$PATH:/usr/local/heroku/bin" ### Added by the Heroku Toolbelt
 
 ####
 ##
@@ -26,10 +25,10 @@ sources=(
   "$HOME/.bash_profiles/ps1"
   "$HOME/.bash_profiles/aliases"
   "$HOME/.bash_profiles/dev-server"
+  "$HOME/.bash_profiles/mongo/mongod"
+  "$HOME/.bash_profiles/ruby"
 
   "$HOME/.nvm/nvm.sh"
-  "$HOME/.bash_profiles/mongo/mongod"
-  "$HOME/.rvm/scripts/rvm"
   "$HOME/.travis/travis.sh"
 )
 
