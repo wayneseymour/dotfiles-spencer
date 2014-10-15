@@ -1,0 +1,10 @@
+function proj {
+  local dir="$(basename "$(pwd)")"
+  local pfile="${DEV_ROOT}/sublime_projects/${dir}.sublime-project"
+  if [[ -e $pfile ]]; then
+    subl --project "$pfile"
+  else
+    echo "missing project file $pfile"
+    return 1
+  fi
+}

@@ -25,6 +25,7 @@ sources=(
   "$HOME/.bash_profiles/ps1"
   "$HOME/.bash_profiles/aliases"
   "$HOME/.bash_profiles/dev-server"
+  "$HOME/.bash_profiles/sublime"
   "$HOME/.bash_profiles/mongo/mongod"
   "$HOME/.bash_profiles/ruby"
 
