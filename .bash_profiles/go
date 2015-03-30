@@ -1,4 +1,4 @@
 #!bash
 
-export GOPATH=$DEV_ROOT/go
+export GOPATH=$DEV_ROOT/gocode
 export PATH=$GOPATH/bin:$PATH

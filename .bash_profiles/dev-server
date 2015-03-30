@@ -1,5 +1,0 @@
-#!/bash
-
-function dev-server {
-  sudo nodemon "$DEV_ROOT/server" --quiet --watch "$DEV_ROOT/vhosts"
-}

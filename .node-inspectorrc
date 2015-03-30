@@ -3,7 +3,7 @@
   "web-host": null,
   "debug-port": 5858,
   "save-live-edit": true,
-  "preload": false,
+  "preload": true,
   "hidden": [],
   "stack-trace-limit": 50
 }

@@ -1,0 +1,23 @@
+#!/usr/bin/env ruby
+
+pr = ARGF.argv[0].strip
+
+if !pr.match(/^\d+$/)
+  puts "first arg should be a pull request number"
+end
+
+userAndRepoRE = /([^:\/]+)\/([^\/]+)\.git$/
+upstreamUrl = `git config --get remote.upstream.url`
+upstreamMatches = upstreamUrl.match(userAndRepoRE)
+
+if !upstreamMatches
+  puts "unable to parse remote.upstream.url #{upstreamUrl}"
+  exit
+end
+
+upstreamUser = upstreamMatches[1]
+upstreamProj = upstreamMatches[2]
+prUrl = "https://github.com/#{upstreamUser}/#{upstreamProj}/pull/#{pr}.patch"
+
+puts "applying Github pr##{pr} from #{upstreamUser}/#{upstreamProj}"
+puts `curl --silent "#{prUrl}" | git am`

@@ -1,3 +1,0 @@
-#!/bash
-
-export PATH="$DEV_ROOT/chromium/depot_tools:$PATH"
