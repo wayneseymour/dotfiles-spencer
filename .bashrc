@@ -31,6 +31,7 @@ sources=(
   "$HOME/.bash_profiles/docker"
 
   "$HOME/.nvm/nvm.sh"
+  "$HOME/.avn/bin/avn.sh"
   "$HOME/.travis/travis.sh"
 )
 
