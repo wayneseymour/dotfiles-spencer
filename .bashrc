@@ -19,20 +19,19 @@ export PATH="$PATH:/usr/local/heroku/bin" ### Added by the Heroku Toolbelt
 ##
 ####
 sources=(
-  "$HOME/.bash_profiles/go"
-  "$HOME/.bash_profiles/java"
-  "$HOME/.bash_profiles/ruby"
-  "$HOME/.bash_profiles/rust"
-  "$HOME/.bash_profiles/git-completion"
-  "$HOME/.bash_profiles/ps1"
-  "$HOME/.bash_profiles/aliases"
-  "$HOME/.bash_profiles/sublime"
-  "$HOME/.bash_profiles/mongo/mongod"
-  "$HOME/.bash_profiles/docker"
-
   "$HOME/.nvm/nvm.sh"
   "$HOME/.avn/bin/avn.sh"
   "$HOME/.travis/travis.sh"
+
+  "$HOME/.bash_profiles/go"
+  "$HOME/.bash_profiles/git"
+  "$HOME/.bash_profiles/java"
+  "$HOME/.bash_profiles/ruby"
+  "$HOME/.bash_profiles/rust"
+  "$HOME/.bash_profiles/ps1"
+  "$HOME/.bash_profiles/aliases"
+  "$HOME/.bash_profiles/mongo/mongod"
+  "$HOME/.bash_profiles/docker"
 )
 
 for i in "${sources[@]}"
