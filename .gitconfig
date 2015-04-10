@@ -16,6 +16,7 @@
   ql = "log --pretty=format:\"[%Cred%h%Creset][%ad] %an: %s\" --date=short -30"
   qln = "log --pretty=format:\"[%Cred%h%Creset][%ad] %an: %s\" --date=short --no-merges -30"
   qlm = "log --pretty=format:\"[%Cred%h%Creset][%ad] %an: %s\" --date=short --merges -30"
+  find = log --pretty=\"format:%Cgreen%H %Cblue%s\" --name-status --graph --decorate --grep
   st = status
   ci = commit
   co = checkout
