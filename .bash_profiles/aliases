@@ -1,9 +1,10 @@
-alias @esjs="cd $DEV_ROOT/es/elasticsearch-js"
-alias esjs="@esjs; proj"
-alias @kbn="cd $DEV_ROOT/es/kibana"
-alias kbn="@kbn; proj"
+alias esjs="cd $DEV_ROOT/es/elasticsearch-js"
+
+alias kbn="cd $DEV_ROOT/es/kibana"
+alias kbndev="kbn; grunt dev --no-test-watcher --with-es"
+
+alias enhance="cd $DEV_ROOT/es/enhance"
+
 alias gut=git
 alias gti=git
 alias got=git
-alias kbndev="cd $DEV_ROOT/es/kibana; grunt dev --no-test-watcher --with-es"
-alias enhance="cd $DEV_ROOT/es/enhance; proj"
