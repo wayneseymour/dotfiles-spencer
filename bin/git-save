@@ -1,9 +1,11 @@
+#!/usr/bin/env bash
+
 git add -A
 
-if [ `git log -1 --pretty=%B` == 'save' ]; then
-  git commit --amend --no-edit
+if [[ "$(git log -1 --pretty=%B)" == "save" ]]; then
+  git commit --amend --no-edit --no-verify
 else
-  git commit -m "save"
+  git commit -m "save" --no-verify
 fi
 
-git log -1 --pretty=%H > /${TMPDIR:-/tmp}/last_git_save
+git log -1 --pretty=%H > "/${TMPDIR:-/tmp}/last_git_save"
