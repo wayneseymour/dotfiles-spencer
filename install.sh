@@ -1,25 +1,90 @@
 #!/usr/bin/env bash
 
+###############################################################################
+# bootstrap a new OSX box                                                     #
+###############################################################################
+
+set -e
+
+info () {
+  printf "  [ \033[00;34m..\033[0m ] %s\n" "$1"
+}
+user () {
+  printf "  [ \033[0;33m?\033[0m ] %s: " "$1"
+}
+success () {
+  printf "\033[2K  [ \033[00;32mOK\033[0m ] %s\n" "$1"
+}
+fail () {
+  printf "\033[2K  [\033[0;31mFAIL\033[0m] %s\n\n" "$1"
+  exit
+}
+
+
+# We currently only support OSX
+if [ "$(uname -s)" != "Darwin" ]; then
+  fail 'Sorry, get a mac please.'
+fi
+
+if [ -z "$(which brew)" ]; then
+  info 'installing brew'
+  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+fi
+
+info 'updating brew'
+brew update
+
+if [ -z "$(which git)" ]; then
+  info 'installing git'
+  brew install git
+fi
+
+# clone the repo or update it
+if [ ! -d ~/.dotfiles ]; then
+  info 'cloning all .dotfiles to ~/.dotfiles'
+  git clone https://github.com/spalger/dotfiles.git ~/.dotfiles
+  cd ~/.dotfiles
+else
+  info 'updating .dotfiles repo'
+  cd ~/.dotfiles
+  git fetch origin master
+  git reset --hard origin/master
+  git clean -fd
+fi
+
+info 'please supply the administrator password so that we can make the necessary system modifications'
+# Ask for the administrator password upfront
+sudo -v
+# Keep-alive: update existing `sudo` time stamp until `.osx` has finished
+while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+
+
+info 'setting up git'
+user 'What is your github username?'
+read -e usrname
+
+git config --global user.name "${usrname}"
+git config --global user.email "${usrname}@users.noreply.github.com"
+git config --global credential.helper osxkeychain
+success 'git/github setup'
+
+info "installing some usefull tools"
 brew install wget brew-cask nvm curl
 brew cask install iterm2 clipmenu spotify google-chrome
-git config --global credential.helper osxkeychain
 
-# ~/.osx — https://mths.be/osx
-
-# Keep-alive: update existing `sudo` time stamp until `.osx` has finished
-# while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+###############################################################################
+# ~/.osx — https://mths.be/osx                                                #
+###############################################################################
 
 ###############################################################################
 # General UI/UX                                                               #
 ###############################################################################
 
-
-
 # Set computer name (as done via System Preferences → Sharing)
-sudo scutil --set ComputerName "malgerite"
-sudo scutil --set HostName "malgerite"
-sudo scutil --set LocalHostName "malgerite"
-sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "malgerite"
+sudo scutil --set ComputerName "$usrname"
+sudo scutil --set HostName "$usrname"
+sudo scutil --set LocalHostName "$usrname"
+sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "$usrname"
 
 # Set standby delay to 24 hours (default is 1 hour)
 # sudo pmset -a standbydelay 86400
@@ -32,16 +97,16 @@ sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.serve
 
 # Menu bar: hide the Time Machine, Volume, and User icons
 # for domain in ~/Library/Preferences/ByHost/com.apple.systemuiserver.*; do
-# 	defaults write "${domain}" dontAutoLoad -array \
-# 		"/System/Library/CoreServices/Menu Extras/TimeMachine.menu" \
-# 		"/System/Library/CoreServices/Menu Extras/Volume.menu" \
-# 		"/System/Library/CoreServices/Menu Extras/User.menu"
+#   defaults write "${domain}" dontAutoLoad -array \
+#     "/System/Library/CoreServices/Menu Extras/TimeMachine.menu" \
+#     "/System/Library/CoreServices/Menu Extras/Volume.menu" \
+#     "/System/Library/CoreServices/Menu Extras/User.menu"
 # done
 # defaults write com.apple.systemuiserver menuExtras -array \
-# 	"/System/Library/CoreServices/Menu Extras/Bluetooth.menu" \
-# 	"/System/Library/CoreServices/Menu Extras/AirPort.menu" \
-# 	"/System/Library/CoreServices/Menu Extras/Battery.menu" \
-# 	"/System/Library/CoreServices/Menu Extras/Clock.menu"
+#   "/System/Library/CoreServices/Menu Extras/Bluetooth.menu" \
+#   "/System/Library/CoreServices/Menu Extras/AirPort.menu" \
+#   "/System/Library/CoreServices/Menu Extras/Battery.menu" \
+#   "/System/Library/CoreServices/Menu Extras/Clock.menu"
 
 # Set highlight color to green
 # defaults write NSGlobalDomain AppleHighlightColor -string "0.764700 0.976500 0.568600"
@@ -340,9 +405,9 @@ chflags nohidden ~/Library
 # Expand the following File Info panes:
 # “General”, “Open with”, and “Sharing & Permissions”
 # defaults write com.apple.finder FXInfoPanesExpanded -dict \
-	# General -bool true \
-	# OpenWith -bool true \
-	# Privileges -bool true
+  # General -bool true \
+  # OpenWith -bool true \
+  # Privileges -bool true
 
 ###############################################################################
 # Dock, Dashboard, and hot corners                                            #
@@ -524,35 +589,35 @@ defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
 sudo defaults write /.Spotlight-V100/VolumeConfiguration Exclusions -array "/Volumes"
 # Change indexing order and disable some search results
 # Yosemite-specific search results (remove them if your are using OS X 10.9 or older):
-# 	MENU_DEFINITION
-# 	MENU_CONVERSION
-# 	MENU_EXPRESSION
-# 	MENU_SPOTLIGHT_SUGGESTIONS (send search queries to Apple)
-# 	MENU_WEBSEARCH             (send search queries to Apple)
-# 	MENU_OTHER
+#   MENU_DEFINITION
+#   MENU_CONVERSION
+#   MENU_EXPRESSION
+#   MENU_SPOTLIGHT_SUGGESTIONS (send search queries to Apple)
+#   MENU_WEBSEARCH             (send search queries to Apple)
+#   MENU_OTHER
 defaults write com.apple.spotlight orderedItems -array \
-	'{"enabled" = 1;"name" = "APPLICATIONS";}' \
-	'{"enabled" = 1;"name" = "SYSTEM_PREFS";}' \
-	'{"enabled" = 1;"name" = "DIRECTORIES";}' \
-	'{"enabled" = 1;"name" = "PDF";}' \
-	'{"enabled" = 1;"name" = "FONTS";}' \
-	'{"enabled" = 0;"name" = "DOCUMENTS";}' \
-	'{"enabled" = 0;"name" = "MESSAGES";}' \
-	'{"enabled" = 0;"name" = "CONTACT";}' \
-	'{"enabled" = 0;"name" = "EVENT_TODO";}' \
-	'{"enabled" = 0;"name" = "IMAGES";}' \
-	'{"enabled" = 0;"name" = "BOOKMARKS";}' \
-	'{"enabled" = 0;"name" = "MUSIC";}' \
-	'{"enabled" = 0;"name" = "MOVIES";}' \
-	'{"enabled" = 0;"name" = "PRESENTATIONS";}' \
-	'{"enabled" = 0;"name" = "SPREADSHEETS";}' \
-	'{"enabled" = 0;"name" = "SOURCE";}' \
-	'{"enabled" = 0;"name" = "MENU_DEFINITION";}' \
-	'{"enabled" = 0;"name" = "MENU_OTHER";}' \
-	'{"enabled" = 0;"name" = "MENU_CONVERSION";}' \
-	'{"enabled" = 0;"name" = "MENU_EXPRESSION";}'
-	# '{"enabled" = 0;"name" = "MENU_WEBSEARCH";}' \
-	# '{"enabled" = 0;"name" = "MENU_SPOTLIGHT_SUGGESTIONS";}'
+  '{"enabled" = 1;"name" = "APPLICATIONS";}' \
+  '{"enabled" = 1;"name" = "SYSTEM_PREFS";}' \
+  '{"enabled" = 1;"name" = "DIRECTORIES";}' \
+  '{"enabled" = 1;"name" = "PDF";}' \
+  '{"enabled" = 1;"name" = "FONTS";}' \
+  '{"enabled" = 0;"name" = "DOCUMENTS";}' \
+  '{"enabled" = 0;"name" = "MESSAGES";}' \
+  '{"enabled" = 0;"name" = "CONTACT";}' \
+  '{"enabled" = 0;"name" = "EVENT_TODO";}' \
+  '{"enabled" = 0;"name" = "IMAGES";}' \
+  '{"enabled" = 0;"name" = "BOOKMARKS";}' \
+  '{"enabled" = 0;"name" = "MUSIC";}' \
+  '{"enabled" = 0;"name" = "MOVIES";}' \
+  '{"enabled" = 0;"name" = "PRESENTATIONS";}' \
+  '{"enabled" = 0;"name" = "SPREADSHEETS";}' \
+  '{"enabled" = 0;"name" = "SOURCE";}' \
+  '{"enabled" = 0;"name" = "MENU_DEFINITION";}' \
+  '{"enabled" = 0;"name" = "MENU_OTHER";}' \
+  '{"enabled" = 0;"name" = "MENU_CONVERSION";}' \
+  '{"enabled" = 0;"name" = "MENU_EXPRESSION";}'
+  # '{"enabled" = 0;"name" = "MENU_WEBSEARCH";}' \
+  # '{"enabled" = 0;"name" = "MENU_SPOTLIGHT_SUGGESTIONS";}'
 # Load new settings before rebuilding the index
 killall mds > /dev/null 2>&1
 # Make sure indexing is enabled for the main volume
@@ -571,10 +636,10 @@ defaults write com.apple.terminal StringEncodings -array 4
 # TERM_PROFILE='Solarized Dark xterm-256color';
 # CURRENT_PROFILE="$(defaults read com.apple.terminal 'Default Window Settings')";
 # if [ "${CURRENT_PROFILE}" != "${TERM_PROFILE}" ]; then
-# 	open "${HOME}/init/${TERM_PROFILE}.terminal";
-# 	sleep 1; # Wait a bit to make sure the theme is loaded
-# 	defaults write com.apple.terminal 'Default Window Settings' -string "${TERM_PROFILE}";
-# 	defaults write com.apple.terminal 'Startup Window Settings' -string "${TERM_PROFILE}";
+#   open "${HOME}/init/${TERM_PROFILE}.terminal";
+#   sleep 1; # Wait a bit to make sure the theme is loaded
+#   defaults write com.apple.terminal 'Default Window Settings' -string "${TERM_PROFILE}";
+#   defaults write com.apple.terminal 'Startup Window Settings' -string "${TERM_PROFILE}";
 # fi;
 
 # Enable “focus follows mouse” for Terminal.app and all X11 apps
@@ -750,7 +815,9 @@ defaults write com.twitter.twitter-mac ESCClosesComposeWindow -bool true
 ###############################################################################
 
 for app in "Activity Monitor" "Address Book" "Calendar" "Contacts" "cfprefsd" \
-	"Dock" "Finder" "Mail" "Messages" "Safari" "SizeUp" "SystemUIServer" \
-	"Terminal" "Transmission" "Twitter" "iCal"; do
-	killall "${app}" > /dev/null 2>&1
+  "Dock" "Finder" "Mail" "Messages" "Safari" "SizeUp" "SystemUIServer" \
+  "Terminal" "Transmission" "Twitter" "iCal"; do
+  killall "${app}" > /dev/null 2>&1
 done
+
+success "Done! Please restart for all changes to take effect."
