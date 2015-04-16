@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 
-# ~/.osx — https://mths.be/osx
+brew install wget brew-cask nvm curl
+brew cask install iterm2 clipmenu spotify google-chrome
+git config --global credential.helper osxkeychain
 
-# Ask for the administrator password upfront
-sudo -v
+# ~/.osx — https://mths.be/osx
 
 # Keep-alive: update existing `sudo` time stamp until `.osx` has finished
 # while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
@@ -11,6 +12,8 @@ sudo -v
 ###############################################################################
 # General UI/UX                                                               #
 ###############################################################################
+
+
 
 # Set computer name (as done via System Preferences → Sharing)
 sudo scutil --set ComputerName "malgerite"
@@ -751,4 +754,3 @@ for app in "Activity Monitor" "Address Book" "Calendar" "Contacts" "cfprefsd" \
 	"Terminal" "Transmission" "Twitter" "iCal"; do
 	killall "${app}" > /dev/null 2>&1
 done
-echo "Done. Note that some of these changes require a logout/restart to take effect."
