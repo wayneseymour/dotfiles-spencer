@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+source "$HOME/.nvm/nvm.sh"
+source "$HOME/.avn/bin/avn.sh"
+export PATH=./node_modules/.bin:$PATH

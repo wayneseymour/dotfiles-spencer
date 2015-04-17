@@ -1,1 +1,0 @@
-export PATH=$DEV_ROOT/nodyn/nodyn/bin:$PATH

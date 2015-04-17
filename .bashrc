@@ -6,12 +6,10 @@ export DEV_ROOT=$HOME/dev
 #   EXTEND $PATH
 ##
 ####
-export PATH=./node_modules/.bin:$PATH
-export PATH=$DEV_ROOT/dotfiles/bin:$PATH
+export PATH=$HOME/.dotfiles/bin:$PATH
 export PATH=$HOME/bin:$PATH
 export PATH=/usr/local/sbin:$PATH
 export PATH=/usr/local/bin:$PATH
-export PATH="$PATH:/usr/local/heroku/bin" ### Added by the Heroku Toolbelt
 
 ####
 ##
@@ -19,19 +17,18 @@ export PATH="$PATH:/usr/local/heroku/bin" ### Added by the Heroku Toolbelt
 ##
 ####
 sources=(
-  "$HOME/.nvm/nvm.sh"
-  "$HOME/.avn/bin/avn.sh"
-  "$HOME/.travis/travis.sh"
+  "$HOME/.dotfiles/lib/aliases"
 
-  "$HOME/.bash_profiles/go"
-  "$HOME/.bash_profiles/git"
-  "$HOME/.bash_profiles/java"
-  "$HOME/.bash_profiles/ruby"
-  "$HOME/.bash_profiles/rust"
-  "$HOME/.bash_profiles/ps1"
-  "$HOME/.bash_profiles/aliases"
-  "$HOME/.bash_profiles/mongo/mongod"
-  "$HOME/.bash_profiles/docker"
+  "$HOME/.dotfiles/lib/ps1"
+  "$HOME/.dotfiles/lib/node"
+
+  "$HOME/.dotfiles/lib/git"
+  "$HOME/.dotfiles/lib/java"
+  "$HOME/.dotfiles/lib/ruby"
+  "$HOME/.dotfiles/lib/docker"
+  "$HOME/.dotfiles/lib/rust"
+  "$HOME/.dotfiles/lib/go"
+  "$HOME/.dotfiles/lib/mongo/mongod"
 )
 
 for i in "${sources[@]}"

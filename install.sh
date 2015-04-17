@@ -4,6 +4,8 @@
 # bootstrap a new OSX box                                                     #
 ###############################################################################
 
+ruby_version='2.2.2'
+
 set -e
 
 info () {
@@ -11,6 +13,9 @@ info () {
 }
 user () {
   printf "  [ \033[0;33m?\033[0m ] %s: " "$1"
+}
+line () {
+  printf "\n        %s" "$1"
 }
 success () {
   printf "\033[2K  [ \033[00;32mOK\033[0m ] %s\n" "$1"
@@ -24,6 +29,55 @@ fail () {
 # We currently only support OSX
 if [ "$(uname -s)" != "Darwin" ]; then
   fail 'Sorry, get a mac please.'
+fi
+
+info 'Lets get setup!'
+info 'are you ready? Hit enter to begin'
+read -e
+
+# info ""
+# Ask for the administrator password upfront
+sudo -p '  [ \033[0;33m?\033[0m ] What is your admin password? (characters are invisible)' -v
+
+if [ ! -d ~/.ssh_test ]; then
+  info 'generating ssh keys and config file'
+
+  user 'What is your email address?'
+  read -e email
+
+  user 'Now, pick a password that you will have to live with'
+  line 'for the rest of your life. Make it long and weird, but'
+  line 'forget about l33t sp34k.'
+  line ''
+  line 'bad: Ycow)843('
+  line 'okay: Pine82_sugar_Syrup'
+  line 'best: spongeinasubmergedpinapplebyarock'
+  echo ''
+
+  pass=''
+  asked_once=''
+  while [ "${#pass}" -lt 20 ]; do
+    if [ -z "$asked_once" ]; then
+      asked_once='1'
+    else
+      info 'you can do better than that, try again'
+    fi
+
+    user ''
+    read -e pass
+  done
+
+  info "alright, your password is set to $pass. Write that down and put it in your wallet."
+  line "DO NOT STORE IT ONLINE!!!"
+  echo ''
+  echo ''
+
+  mkdir ~/.ssh_test
+  cat << EOF > ~/.ssh_test/config
+Host *
+  ServerAliveInterval 60
+EOF
+  ssh-keygen -t rsa -C "$email" -f ~/.ssh_test/id_rsa -N "$pass"
 fi
 
 if [ -z "$(which brew)" ]; then
@@ -44,6 +98,10 @@ if [ ! -d ~/.dotfiles ]; then
   info 'cloning all .dotfiles to ~/.dotfiles'
   git clone https://github.com/spalger/dotfiles.git ~/.dotfiles
   cd ~/.dotfiles
+
+  ln -s ~/.dotfiles/.bash_profile ~/.bash_profile
+  ln -s ~/.dotfiles/.bashrc ~/.bashrc
+  ln -s ~/.dotfiles/.gitconfig ~/.gitconfig
 else
   info 'updating .dotfiles repo'
   cd ~/.dotfiles
@@ -52,14 +110,8 @@ else
   git clean -fd
 fi
 
-info 'please supply the administrator password so that we can make the necessary system modifications'
-# Ask for the administrator password upfront
-sudo -v
-# Keep-alive: update existing `sudo` time stamp until `.osx` has finished
-while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
-
-
 info 'setting up git'
+
 user 'What is your github username?'
 read -e usrname
 
@@ -69,8 +121,23 @@ git config --global credential.helper osxkeychain
 success 'git/github setup'
 
 info "installing some usefull tools"
-brew install wget brew-cask nvm curl
+brew install wget brew-cask nvm curl rbenv
 brew cask install iterm2 clipmenu spotify google-chrome
+
+info "installing node.js"
+nvm install stable
+nvm alias default stable
+
+info "installing node auto-switching"
+npm install -g avn avn-nvm avn-n
+
+info "installing a recent version of ruby"
+rbenv install "$ruby_version"
+rbenv global "$ruby_version"
+rbenv rehash
+
+info "installing the travis toolbelt"
+gem install travis
 
 ###############################################################################
 # ~/.osx — https://mths.be/osx                                                #

@@ -1,1 +1,3 @@
+#!/usr/bin/env bash
+
 [[ -s /Users/spencer/.rsvm/rsvm.sh ]] && . /Users/spencer/.rsvm/rsvm.sh # This loads RSVM

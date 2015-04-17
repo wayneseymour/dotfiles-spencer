@@ -2,6 +2,4 @@
 
 if [[ $(type -t __git_refs) != 'function' ]]; then
   source /usr/local/etc/bash_completion.d/git-completion.bash
-  # source /usr/local/etc/bash_completion.d/git-prompt.sh
-  # export PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
 fi

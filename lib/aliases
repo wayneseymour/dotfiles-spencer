@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+if [ -f ~/.aliases ]; then
+  source ~/.aliases
+fi
+
+alias gut=git
+alias gti=git
+alias got=git
