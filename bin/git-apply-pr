@@ -17,7 +17,7 @@ end
 
 upstreamUser = upstreamMatches[1]
 upstreamProj = upstreamMatches[2]
-prUrl = "https://github.com/#{upstreamUser}/#{upstreamProj}/pull/#{pr}.patch"
+prUrl = "https://patch-diff.githubusercontent.com/raw/#{upstreamUser}/#{upstreamProj}/pull/#{pr}.patch"
 
 puts "applying Github pr##{pr} from #{upstreamUser}/#{upstreamProj}"
 puts `curl --silent "#{prUrl}" | git am`
