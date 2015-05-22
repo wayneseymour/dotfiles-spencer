@@ -6,6 +6,7 @@ export DEV_ROOT=$HOME/dev
 #   EXTEND $PATH
 ##
 ####
+export PATH=$HOME/.pear/bin:$PATH
 export PATH=$HOME/.dotfiles/bin:$PATH
 export PATH=$HOME/bin:$PATH
 export PATH=/usr/local/sbin:$PATH
