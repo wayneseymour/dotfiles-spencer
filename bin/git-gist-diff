@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 
 if [[ -n $(which gist) ]]; then
-  patch=$(git diff --patch "$@")
+  git add -A
+  patch=$(git diff --patch --cached "$@")
+  reset=$(git reset)
   echo "$patch" | gist --anonymous --no-private --no-open --type diff --copy
 else
   echo 'you must first install gist-cli from npm'
