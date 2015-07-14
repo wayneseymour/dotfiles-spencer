@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
 export DEV_ROOT=$HOME/dev
 
 ####
@@ -36,3 +37,5 @@ for i in "${sources[@]}"
 do
   source "$i"
 done
+# added by travis gem
+[ -f /Users/spalger/.travis/travis.sh ] && source /Users/spalger/.travis/travis.sh

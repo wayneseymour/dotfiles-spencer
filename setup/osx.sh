@@ -1,145 +1,6 @@
 #!/usr/bin/env bash
 
 ###############################################################################
-# bootstrap a new OSX box                                                     #
-###############################################################################
-
-ruby_version='2.2.2'
-
-set -e
-
-info () {
-  printf "  [ \033[00;34m..\033[0m ] %s\n" "$1"
-}
-user () {
-  printf "  [ \033[0;33m?\033[0m ] %s: " "$1"
-}
-line () {
-  printf "\n        %s" "$1"
-}
-success () {
-  printf "\033[2K  [ \033[00;32mOK\033[0m ] %s\n" "$1"
-}
-fail () {
-  printf "\033[2K  [\033[0;31mFAIL\033[0m] %s\n\n" "$1"
-  exit
-}
-
-
-# We currently only support OSX
-if [ "$(uname -s)" != "Darwin" ]; then
-  fail 'Sorry, get a mac please.'
-fi
-
-info 'Lets get setup!'
-info 'are you ready? Hit enter to begin'
-read -e
-
-# info ""
-# Ask for the administrator password upfront
-sudo -p '  [ \033[0;33m?\033[0m ] What is your admin password? (characters are invisible)' -v
-
-if [ ! -d ~/.ssh_test ]; then
-  info 'generating ssh keys and config file'
-
-  user 'What is your email address?'
-  read -e email
-
-  user 'Now, pick a password that you will have to live with'
-  line 'for the rest of your life. Make it long and weird, but'
-  line 'forget about l33t sp34k.'
-  line ''
-  line 'bad: Ycow)843('
-  line 'okay: Pine82_sugar_Syrup'
-  line 'best: spongeinasubmergedpinapplebyarock'
-  echo ''
-
-  pass=''
-  asked_once=''
-  while [ "${#pass}" -lt 20 ]; do
-    if [ -z "$asked_once" ]; then
-      asked_once='1'
-    else
-      info 'you can do better than that, try again'
-    fi
-
-    user ''
-    read -e pass
-  done
-
-  info "alright, your password is set to $pass. Write that down and put it in your wallet."
-  line "DO NOT STORE IT ONLINE!!!"
-  echo ''
-  echo ''
-
-  mkdir ~/.ssh_test
-  cat << EOF > ~/.ssh_test/config
-Host *
-  ServerAliveInterval 60
-EOF
-  ssh-keygen -t rsa -C "$email" -f ~/.ssh_test/id_rsa -N "$pass"
-fi
-
-if [ -z "$(which brew)" ]; then
-  info 'installing brew'
-  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-fi
-
-info 'updating brew'
-brew update
-
-if [ -z "$(which git)" ]; then
-  info 'installing git'
-  brew install git
-fi
-
-# clone the repo or update it
-if [ ! -d ~/.dotfiles ]; then
-  info 'cloning all .dotfiles to ~/.dotfiles'
-  git clone https://github.com/spalger/dotfiles.git ~/.dotfiles
-  cd ~/.dotfiles
-
-  ln -s ~/.dotfiles/.bash_profile ~/.bash_profile
-  ln -s ~/.dotfiles/.bashrc ~/.bashrc
-  ln -s ~/.dotfiles/.gitconfig ~/.gitconfig
-else
-  info 'updating .dotfiles repo'
-  cd ~/.dotfiles
-  git fetch origin master
-  git reset --hard origin/master
-  git clean -fd
-fi
-
-info 'setting up git'
-
-user 'What is your github username?'
-read -e usrname
-
-git config --global user.name "${usrname}"
-git config --global user.email "${usrname}@users.noreply.github.com"
-git config --global credential.helper osxkeychain
-success 'git/github setup'
-
-info "installing some usefull tools"
-brew install wget brew-cask nvm curl rbenv
-brew cask install iterm2 clipmenu spotify google-chrome
-
-info "installing node.js"
-nvm install stable
-nvm alias default stable
-
-info "installing node auto-switching"
-npm install -g avn avn-nvm avn-n
-
-info "installing a recent version of ruby"
-rbenv install "$ruby_version"
-rbenv global "$ruby_version"
-rbenv rehash
-
-info "installing the travis toolbelt"
-gem install travis
-
-###############################################################################
 # ~/.osx — https://mths.be/osx                                                #
 ###############################################################################
 
@@ -316,7 +177,7 @@ defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
 # defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 
 # Set a blazingly fast keyboard repeat rate
-defaults write NSGlobalDomain KeyRepeat -int 0
+defaults write NSGlobalDomain KeyRepeat -int 1
 
 # Set language and text formats
 # Note: if you’re in the US, replace `EUR` with `USD`, `Centimeters` with
@@ -886,5 +747,3 @@ for app in "Activity Monitor" "Address Book" "Calendar" "Contacts" "cfprefsd" \
   "Terminal" "Transmission" "Twitter" "iCal"; do
   killall "${app}" > /dev/null 2>&1
 done
-
-success "Done! Please restart for all changes to take effect."
