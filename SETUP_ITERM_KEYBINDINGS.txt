@@ -1,0 +1,28 @@
+Keyboard Shortcut: ⌥←
+Action: Send Escape Sequence
+Esc+ b
+
+
+Keyboard Shortcut: ⌥→
+Action: Send Escape Sequence
+Esc+ f
+
+
+Keyboard Shortcut: ⌘←
+Action: Send Escape Sequence
+Esc+ [H
+
+
+Keyboard Shortcut: ⌘→
+Action: Send Escape Sequence
+Esc+ [F
+
+
+Keyboard Shortcut: ⌘←Delete
+Action: Send Hex Code
+0x15
+
+
+Keyboard Shortcut:⌥←Delete
+Action: Send Hex Code
+0x1B 0x08
