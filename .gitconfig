@@ -1,9 +1,9 @@
 [user]
-	name = spalger
-	email = email@spalger.com
+  name = spalger
+  email = email@spalger.com
 
 [core]
-	autocrlf = input
+  autocrlf = input
 
 [alias]
   unstage = reset HEAD --
@@ -48,15 +48,17 @@
   clear-pr = !git branch | grep pr/ | xargs "git branch -D"
   apr = apply-pr
   bp = cherry-pick -x
+  trackup = branch --set-upstream-to upstream/master
+  pum = pull --ff-only upstream master
 
 [push]
-	default = current
+  default = current
 
 [credential]
-	helper = osxkeychain
+  helper = osxkeychain
 
 [format]
-	pretty = format:[%Cgreen%h%Creset][%ad] %an: %s
+  pretty = format:[%Cgreen%h%Creset][%ad] %an: %s
 
 [diff]
 
@@ -64,11 +66,15 @@
   ui = auto
 
 [log]
-	date = short
+  date = short
 
 [filter "media"]
-	clean = git-media-clean %f
-	smudge = git-media-smudge %f
+  clean = git-media-clean %f
+  smudge = git-media-smudge %f
 
 [push]
   default = current
+[filter "lfs"]
+  clean = git-lfs clean %f
+  smudge = git-lfs smudge %f
+  required = true
