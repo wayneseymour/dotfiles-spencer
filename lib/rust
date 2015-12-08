@@ -1,4 +1,1 @@
 #!/usr/bin/env bash
-
-[[ -s $HOME/.rsvm/rsvm.sh ]] && . $HOME/.rsvm/rsvm.sh # This loads RSVM
-export RUST_SRC_PATH=$HOME/.rsvm/current/src/

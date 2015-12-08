@@ -48,7 +48,6 @@
   clear-pr = !git branch | grep pr/ | xargs "git branch -D"
   apr = apply-pr
   bp = cherry-pick -x
-  trackup = branch --set-upstream-to upstream/master
   pum = pull --ff-only upstream master
 
 [push]
@@ -74,6 +73,7 @@
 
 [push]
   default = current
+
 [filter "lfs"]
   clean = git-lfs clean %f
   smudge = git-lfs smudge %f

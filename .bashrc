@@ -22,11 +22,12 @@ sources=(
 
   "$HOME/.dotfiles/lib/git"
   "$HOME/.dotfiles/lib/java"
-  "$HOME/.dotfiles/lib/ruby"
   "$HOME/.dotfiles/lib/docker"
+  "$HOME/.dotfiles/lib/flutter"
   "$HOME/.dotfiles/lib/rust"
   "$HOME/.dotfiles/lib/go"
   "$HOME/.dotfiles/lib/mongo/mongod"
+  "$HOME/.dotfiles/lib/ruby"
 )
 
 for i in "${sources[@]}"

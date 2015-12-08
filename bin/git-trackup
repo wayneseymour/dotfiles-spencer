@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+set -e
+
+branch="$1";
+currentBranch="$(git rev-parse --abbrev-ref HEAD)";
+branch="${branch:-$currentBranch}";
+git branch --set-upstream-to upstream/$branch;
