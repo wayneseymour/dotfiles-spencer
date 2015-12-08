@@ -40,7 +40,6 @@ sudo -p '  [ \033[0;33m?\033[0m ] What is your admin password? (characters are i
 user 'What is your github username?'
 read -e usrname
 
-source ./setup/ssh.sh;
 source ./setup/brew.sh;
 source ./setup/git.sh;
 source ./setup/dotfiles.sh;

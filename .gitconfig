@@ -1,6 +1,6 @@
 [user]
   name = spalger
-  email = email@spalger.com
+	email = spalger@users.noreply.github.com
 
 [core]
   autocrlf = input
