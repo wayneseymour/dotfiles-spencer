@@ -5,8 +5,15 @@
 ###############################################################################
 
 ###############################################################################
+# itunes                                                                      #
+###############################################################################
+defaults write com.apple.iTunes dontAutomaticallySyncIPods -bool true
+
+###############################################################################
 # General UI/UX                                                               #
 ###############################################################################
+
+defaults write NSGlobalDomain NSUseAnimatedFocusRing -bool false
 
 # Set computer name (as done via System Preferences → Sharing)
 sudo scutil --set ComputerName "$usrname"
