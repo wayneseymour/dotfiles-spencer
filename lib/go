@@ -2,3 +2,4 @@
 
 export GOPATH=$DEV_ROOT/gocode
 export PATH=$GOPATH/bin:$PATH
+export PATH=$PATH:/usr/local/opt/go/libexec/bin

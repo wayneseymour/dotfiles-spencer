@@ -4,6 +4,7 @@
 
 [core]
   autocrlf = input
+	excludesfile = /Users/spalger/.gitignore_global
 
 [alias]
   unstage = reset HEAD --
@@ -48,13 +49,13 @@
   clear-pr = !git branch | grep pr/ | xargs "git branch -D"
   apr = apply-pr
   bp = cherry-pick -x
-  pum = pull --ff-only upstream master
+  sync = pull --ff-only upstream master
 
 [push]
   default = current
 
 [credential]
-  helper = osxkeychain
+	helper = osxkeychain
 
 [format]
   pretty = format:[%Cgreen%h%Creset][%ad] %an: %s

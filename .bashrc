@@ -16,18 +16,19 @@ export PATH=./bin:$HOME/bin:$HOME/.dotfiles/bin:/usr/local/sbin:/usr/local/bin:$
 ####
 sources=(
   "$HOME/.dotfiles/lib/aliases"
+  "$HOME/.dotfiles/lib/bash_completion"
 
   "$HOME/.dotfiles/lib/ps1"
   "$HOME/.dotfiles/lib/node"
 
-  "$HOME/.dotfiles/lib/git"
   "$HOME/.dotfiles/lib/java"
-  "$HOME/.dotfiles/lib/docker"
   "$HOME/.dotfiles/lib/flutter"
   "$HOME/.dotfiles/lib/rust"
   "$HOME/.dotfiles/lib/go"
   "$HOME/.dotfiles/lib/mongo/mongod"
   "$HOME/.dotfiles/lib/ruby"
+
+  "$HOME/.dotfiles/lib/docker"
 )
 
 for i in "${sources[@]}"

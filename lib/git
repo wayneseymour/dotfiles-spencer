@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-
-if [[ $(type -t __git_refs) != 'function' ]]; then
-  source /usr/local/etc/bash_completion.d/git-completion.bash
-fi

@@ -1,23 +1,56 @@
 #!/usr/bin/env ruby
 
+require 'open-uri'
+require 'socket'
+require 'json'
+
 pr = ARGF.argv[0].strip
+baseBranch = ARGF.argv[1].strip if ARGF.argv.size > 1
 
 if !pr.match(/^\d+$/)
   puts "first arg should be a pull request number"
 end
 
-userAndRepoRE = /([^:\/]+)\/([^\/]+)\.git$/
-upstreamUrl = `git config --get remote.upstream.url`
-upstreamMatches = upstreamUrl.match(userAndRepoRE)
+if !baseBranch
+  userAndRepoRE = /([^:\/]+)\/([^\/]+)\.git$/
+  upstreamUrl = `git config --get remote.upstream.url`
+  upstreamMatches = upstreamUrl.match(userAndRepoRE)
 
-if !upstreamMatches
-  puts "unable to parse remote.upstream.url #{upstreamUrl}"
-  exit
+  if !upstreamMatches
+    puts "unable to parse remote.upstream.url #{upstreamUrl}"
+    exit
+  end
+
+  upstreamUser = upstreamMatches[1]
+  upstreamProj = upstreamMatches[2]
+  puts "fetching base branch for pr ##{pr}. (provide as second arg to skip)"
+
+  prUrl = "https://api.github.com/repos/#{upstreamUser}/#{upstreamProj}/pulls/#{pr}"
+  ghHeaders = {
+    "User-Agent" => "BackportPrScripr/#{Socket.gethostname}"
+  }
+
+  response = JSON.parse(open(prUrl, ghHeaders).read)
+  baseBranch = response["base"]["ref"]
 end
 
-upstreamUser = upstreamMatches[1]
-upstreamProj = upstreamMatches[2]
-prUrl = "https://patch-diff.githubusercontent.com/raw/#{upstreamUser}/#{upstreamProj}/pull/#{pr}.patch"
-
 puts "applying Github pr##{pr} from #{upstreamUser}/#{upstreamProj}"
-puts `curl --silent "#{prUrl}" | git am`
+puts `git fetch -q upstream pull/#{pr}/head`
+
+cpOutput = `git cherry-pick -x "#{baseBranch}..FETCH_HEAD" --allow-empty-message --allow-empty 2>&1`
+unless $?.success? then
+  puts "git cherry-pick failed with the output:
+
+#{cpOutput.lines.map {|l| "  #{l.chomp}" } .join("\n")}
+
+if there were fixable conflicts then fix the conflicts and then continue the cherry-pick
+
+     git add ...
+     git cherry-pick --continue
+
+otherwise you can abort cherry-pick:
+
+     git cherry-pick --abort
+
+"
+end
