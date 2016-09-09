@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-PATH="$HOME/.multirust/toolchains/nightly/cargo/bin:$PATH"
-export OPENSSL_INCLUDE_DIR="$(brew --prefix openssl)/include"
-export OPENSSL_LIB_DIR="$(brew --prefix openssl)/lib"

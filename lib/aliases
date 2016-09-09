@@ -9,3 +9,4 @@ alias gti=git
 alias got=git
 alias "atom-"='tmpin atom'
 alias ll='ls -1AhH'
+alias dock='eval "$(docker-machine env)"'

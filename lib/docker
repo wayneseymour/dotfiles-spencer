@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-
-# if [[ -n "$(which docker-machine)" ]]; then
-#   eval "$(docker-machine env default)"
-# fi

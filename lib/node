@@ -8,4 +8,4 @@ export NVM_DIR="$HOME/.nvm"
 [[ -s "$HOME/.avn/bin/avn.sh" ]] && source "$HOME/.avn/bin/avn.sh" # load avn
 
 ### include local node_modules
-# export PATH=./node_modules/.bin:$PATH
+export PATH=./node_modules/.bin:$PATH

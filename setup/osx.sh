@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-usrname="spalger"
+username="$(whoami)"
 
 ###############################################################################
 # ~/.osx — https://mths.be/osx                                                #
@@ -13,10 +13,10 @@ usrname="spalger"
 # defaults write NSGlobalDomain NSUseAnimatedFocusRing -bool false
 
 # Set computer name (as done via System Preferences → Sharing)
-sudo scutil --set ComputerName "$usrname"
-sudo scutil --set HostName "$usrname"
-sudo scutil --set LocalHostName "$usrname"
-sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "$usrname"
+sudo scutil --set ComputerName "$username"
+sudo scutil --set HostName "$username"
+sudo scutil --set LocalHostName "$username"
+sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "$username"
 
 # Set standby delay to 24 hours (default is 1 hour)
 # sudo pmset -a standbydelay 86400
