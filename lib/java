@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-
-[ -s "$HOME/.jabba/jabba.sh" ] && source "$HOME/.jabba/jabba.sh"

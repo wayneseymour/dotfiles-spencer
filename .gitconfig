@@ -1,6 +1,6 @@
 [user]
 	name = spalger
-	email = spalger@users.noreply.github.com
+	email = email@spalger.com
 	signingkey = 7B2B7632
 
 [core]
@@ -57,7 +57,7 @@
   default = current
 
 [credential]
-	helper = osxkeychain
+	helper = "cache --cache 120"
 
 [format]
   pretty = format:[%Cgreen%h%Creset][%ad] %an: %s
