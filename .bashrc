@@ -9,6 +9,7 @@ __spalger_dotfiles__() {
     setup_env
     setup_iterm
     setup_java
+    setup_rust
     setup_node
     setup_ps1
   }
@@ -47,7 +48,11 @@ __spalger_dotfiles__() {
   }
 
   setup_java() {
-    [ -s "$HOME/.jabba/jabba.sh" ] && source "$HOME/.jabba/jabba.sh"
+    [ -s "${HOME}/.jabba/jabba.sh" ] && source "${HOME}/.jabba/jabba.sh"
+  }
+  
+  setup_rust() {
+    [ -s "${HOME}/.cargo/env" ] && source "${HOME}/.cargo/env"
   }
 
   setup_node() {
