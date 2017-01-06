@@ -1,0 +1,23 @@
+#!/usr/bin/env node
+
+const readFileSync = require('fs').readFileSync
+const writeFileSync = require('fs').writeFileSync
+
+const TODO_LINE_RE = /^pick ([a-f0-9]{5,40}) /
+const TODO_PATH = process.argv[2]
+
+const todos = readFileSync(process.argv[2], 'utf8')
+const lines = todos.split(/\r?\n/)
+
+const todo = lines[0];
+if (!TODO_LINE_RE.test(todo)) {
+  console.error(`Unable to read rebase todos: \n\n${todos}\n`)
+  process.exit(1);
+}
+
+const newTodos = [
+  todo.replace(/^pick /, 'edit '),
+  ...lines.slice(1)
+].join('\n');
+
+writeFileSync(TODO_PATH, newTodos, 'utf8');

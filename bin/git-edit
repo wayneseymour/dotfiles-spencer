@@ -1,0 +1,24 @@
+#!/usr/bin/env node
+
+const spawn = require('child_process').spawn
+const resolve = require('path').resolve
+
+if (process.argv.length !== 3) {
+  console.log('USAGE: git edit <ref>')
+  process.exit(1)
+}
+
+const sequenceEditor = resolve(__dirname, 'git-edit__sequence-editor')
+const ref = process.argv[2];
+
+const cp = spawn('git', ['rebase', '-i', `${ref}^`], {
+  cwd: process.cwd(),
+  stdio: ['ignore', 'ignore', 'inherit'],
+  env: Object.assign({}, process.env, {
+    GIT_SEQUENCE_EDITOR: sequenceEditor
+  })
+})
+
+cp.on('close', (code) => {
+  process.exit(code)
+})
