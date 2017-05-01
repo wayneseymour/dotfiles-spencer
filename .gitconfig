@@ -57,7 +57,7 @@
   default = current
 
 [credential]
-	helper = "cache --cache 120"
+	helper = cache
 
 [format]
   pretty = format:[%Cgreen%h%Creset][%ad] %an: %s
