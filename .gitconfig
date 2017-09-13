@@ -1,12 +1,11 @@
 [user]
-	name = spalger
-	email = spalger@users.noreply.github.com
-	signingkey = 7B2B7632
+  name = spalger
+  email = spalger@users.noreply.github.com
 
 [core]
   autocrlf = input
-	excludesfile = /Users/spalger/.gitignore_global
-	pager = diff-so-fancy | less --tabs=4 -RFX
+  excludesfile = /Users/spalger/.gitignore_global
+  pager = diff-so-fancy | less --tabs=4 -RFX
 
 [alias]
   unstage = reset HEAD --
@@ -57,7 +56,7 @@
   default = current
 
 [credential]
-	helper = cache
+  helper = cache
 
 [format]
   pretty = format:[%Cgreen%h%Creset][%ad] %an: %s
