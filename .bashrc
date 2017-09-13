@@ -76,9 +76,6 @@ __spalger_dotfiles__() {
     # setup node version manager
     export NVM_DIR="$HOME/.nvm"
     source "${NVM_DIR}/nvm.sh"  # This loads nvm
-    
-    # add yarn globals to path
-    export PATH="$HOME/.yarn/bin:$PATH"
 
     # setup automatic node version switching
     source "${HOME}/.avn/bin/avn.sh" # load avn
