@@ -15,6 +15,7 @@ __spalger_dotfiles__() {
     setup_go
     setup_ps1
     setup_sdkman
+    setup_fzf
   }
   
   setup_aliases() {
@@ -56,6 +57,15 @@ __spalger_dotfiles__() {
   
   setup_rust() {
     source "${HOME}/.cargo/env"
+  }
+  
+  setup_fzf() {
+    export FZF_DEFAULT_COMMAND='ag -g ""'
+    source "${HOME}/.fzf.bash"
+    # shellcheck disable=SC2139
+    alias fzf="$(which fzf) --preview '[[ $(file --mime {}) =~ binary ]] &&
+                 echo {} is a binary file ||
+                 (highlight -O ansi -l {} || cat {}) 2> /dev/null | head -1000'"
   }
   
   setup_go() {
