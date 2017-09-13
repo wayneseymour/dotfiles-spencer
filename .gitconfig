@@ -52,6 +52,7 @@
   bp = cherry-pick -x
   sync = pull --ff-only upstream master
   comit = commit
+  branchlog = "!f() { git for-each-ref --count=${1:-10} --sort=-committerdate refs/heads/ --format='%(refname:short)'; }; f"
 
 [push]
   default = current
