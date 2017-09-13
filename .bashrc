@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# shellcheck disable=SC1090
 
 __spalger_dotfiles__() {
   unset __spalger_dotfiles__
