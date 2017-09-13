@@ -83,6 +83,7 @@ __spalger_dotfiles__() {
   setup_ps1() {
     export GITAWAREPROMPT="${HOME}/.dotfiles/repos/git-aware-prompt"
     source "${GITAWAREPROMPT}/main.sh"
+    # shellcheck disable=SC2154
     export PS1="\w \[$txtcyn\]\$git_branch\[$txtred\]\$git_dirty\[$txtrst\] \$ "
   }
   
