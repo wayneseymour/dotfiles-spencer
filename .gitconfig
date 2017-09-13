@@ -51,6 +51,7 @@
   apr = apply-pr
   bp = cherry-pick -x
   sync = pull --ff-only upstream master
+  comit = commit
 
 [push]
   default = current
