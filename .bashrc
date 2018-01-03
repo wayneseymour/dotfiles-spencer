@@ -8,14 +8,11 @@ __spalger_dotfiles__() {
     setup_aliases
     setup_bash_completion
     setup_env
-    setup_iterm
     setup_java
-    setup_rust
     setup_node
     setup_go
     setup_ps1
     setup_sdkman
-    setup_fzf
   }
   
   setup_aliases() {
@@ -40,32 +37,12 @@ __spalger_dotfiles__() {
   setup_env() {
     export EDITOR=vim
     
-    export PATH=./bin:$PATH
     export PATH=$HOME/bin:$PATH
     export PATH=$HOME/.dotfiles/bin:$PATH
-    export PATH=/usr/local/sbin:$PATH
-    export PATH=/usr/local/bin:$PATH
-  }
-
-  setup_iterm() {
-    source "${HOME}/.iterm2_shell_integration.bash"
   }
 
   setup_java() {
     source "${HOME}/.jabba/jabba.sh"
-  }
-  
-  setup_rust() {
-    source "${HOME}/.cargo/env"
-  }
-  
-  setup_fzf() {
-    export FZF_DEFAULT_COMMAND='ag -g ""'
-    source "${HOME}/.fzf.bash"
-    # shellcheck disable=SC2139
-    alias fzf="$(which fzf) --preview '[[ $(file --mime {}) =~ binary ]] &&
-                 echo {} is a binary file ||
-                 (highlight -O ansi -l {} || cat {}) 2> /dev/null | head -1000'"
   }
   
   setup_go() {
