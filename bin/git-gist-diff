@@ -8,12 +8,16 @@ fi
 # collect untracked and not-ignored paths
 untracked="$(git ls-files -o --exclude-per-directory .gitignore)"
 
-# add untracked files to the index temporarily
-git add -N $untracked
+if [ -n "$untracked" ]; then
+  # add untracked files to the index temporarily
+  git add -N $untracked
+fi
 
 # diff HEAD includes stages and unstaged changes
 git diff HEAD --patch "$@" | \
   gist --anonymous --no-private --no-open --type diff --copy
 
-# restore untracked status of previously untracked files
-git reset $untracked --quiet
+if [ -n "$untracked" ]; then
+  # restore untracked status of previously untracked files
+  git reset $untracked --quiet
+fi
