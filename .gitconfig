@@ -1,11 +1,12 @@
 [user]
   name = spalger
-  email = spalger@users.noreply.github.com
+	email = email@spalger.com
 
 [core]
   autocrlf = input
   excludesfile = /Users/spalger/.gitignore_global
-  pager = diff-so-fancy | less --tabs=4 -RFX
+	pager = diff-so-fancy | less --tabs=2 -RFX
+	precomposeUnicode = true
 
 [alias]
   co = checkout
@@ -28,7 +29,7 @@
 [diff]
 
 [color]
-  ui = auto
+	ui = true
 
 [log]
   date = short
@@ -39,7 +40,7 @@
   process = git-lfs filter-process
 
 [http]
-  cookiefile = ~/.gitcookies
+	cookiefile = /Users/spalger/.gitcookies
 
 [push]
   default = current
@@ -48,3 +49,17 @@
   clean = git-lfs clean %f
   smudge = git-lfs smudge %f
   required = true
+
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22
+
+[color "diff"]
+	meta = yellow
+	frag = magenta bold
+	commit = yellow bold
+	old = red bold
+	new = green bold
+	whitespace = red reverse
