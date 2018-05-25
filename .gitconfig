@@ -12,7 +12,7 @@
   co = checkout
   undo = reset HEAD^
   co = checkout
-  pr = "!f() { git co -q master; git branch -Dq pr/$1; git fetch upstream pull/$1/head:pr/$1 && git co -q pr/$1; }; f"
+  pr = "!f() { git fetch upstream pull/$1/head && git checkout -B pr/$1 FETCH_HEAD; }; f"
   clear-pr = !git branch | grep pr/ | xargs "git branch -D"
   comit = commit
   branchlog = "!f() { git for-each-ref --count=${1:-10} --sort=-committerdate refs/heads/ --format='%(refname:short)'; }; f"
