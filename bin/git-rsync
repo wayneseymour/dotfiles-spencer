@@ -1,0 +1,58 @@
+#!/bin/sh
+#
+# Author: Matthieu Prat <matthieuprat@gmail.com>
+# Date: 01/22/2015
+#
+# Sync a local work tree with a remote one.
+# It's rsync on steroids within large Git repositories.
+
+USAGE='<repository>'
+LONG_USAGE='Sync a local work tree with a remote one.'
+SUBDIRECTORY_OK=No
+OPTIONS_SPEC=
+
+. "$(git --exec-path)/git-sh-setup"
+require_work_tree
+cd_to_toplevel
+
+[ $# -eq 0 ] || [ $# -gt 1 ] && {
+    usage
+}
+
+head="$(git rev-parse HEAD)"
+
+remote="$(git ls-remote --get-url "$1")" # e.g. git.example.org:path/to/repository
+remote_host="${remote%:*}"             #      git.example.org
+remote_repo="${remote##*:}"            #      path/to/repository
+
+remote_exec () {
+    ssh -T -A "$remote_host" "cd $remote_repo && $*"
+}
+
+{
+    # Push the local HEAD to the remote (if need be).
+    if ! remote_exec git rev-parse --verify --quiet "$head^{commit}"
+    then
+        git push --quiet --force "$remote" "$head:refs/heads/rsync/HEAD" &&
+        remote_exec rm '$(git rev-parse --git-dir)'/refs/heads/rsync/HEAD
+    fi || die "Failed to push local HEAD to the remote." &&
+
+    # Checkout the local HEAD on the remote end and clean untracked files.
+    remote_exec "
+        git checkout --quiet -f $head &&
+        git clean -df
+    " || die "Unable to checkout local HEAD on the remote." &&
+
+    # Apply local changes (if any) to the remote work tree.
+    if ! git diff-index --quiet --ignore-submodules HEAD
+    then
+        git diff-index --unified=0 --binary --ignore-submodules "$head" |
+            remote_exec git apply --unidiff-zero --whitespace=nowarn -
+    fi || die "Could not apply local changes on the remote." &&
+
+    # Fallback to rsync for untracked files.
+    git ls-files --others --exclude-standard -z |
+        rsync --files-from=- -0 --no-dirs --whole-file . "$remote" \
+    || die "Failed to push untracked files."
+
+} > /dev/null && echo "Success."
