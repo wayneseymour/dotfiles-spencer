@@ -1,0 +1,149 @@
+// Place your key bindings in this file to overwrite the defaults
+[
+  // remap cmd+. to select the current file in the file explorer
+  {
+    "key": "shift+cmd+e",
+    "command": "-workbench.view.explorer"
+  },
+  {
+    "key": "cmd+.",
+    "command": "-editor.action.quickFix",
+    "when": "editorHasCodeActionsProvider && editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "cmd+.",
+    "command": "workbench.files.action.focusFilesExplorer",
+    "args": {
+      "focusExplorer": true
+    }
+  },
+  {
+    "key": "cmd+.",
+    "command": "workbench.view.explorer"
+  },
+  // rename the active file in the file explorer
+  {
+    "key": "m",
+    "command": "renameFile",
+    "when": "explorerViewletVisible && filesExplorerFocus && !inputFocus"
+  },
+  // refocus the active editor when escape is hit from the file explorer
+  {
+    "key": "escape",
+    "command": "workbench.action.focusActiveEditorGroup",
+    "when": "filesExplorerFocus && !inputFocus"
+  },
+  // switch between editor groups
+  {
+    "key": "cmd+[",
+    "command": "-editor.action.outdentLines",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "cmd+[",
+    "command": "-editor.action.outdentLines",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "cmd+]",
+    "command": "workbench.action.focusNextGroup"
+  },
+  {
+    "key": "cmd+[",
+    "command": "workbench.action.focusPreviousGroup"
+  },
+  // move between markers in a file (lint errors, etc.)
+  {
+    "key": "f8",
+    "command": "-editor.action.marker.nextInFiles",
+    "when": "editorFocus && !editorReadonly"
+  },
+  {
+    "key": "shift+alt+.",
+    "command": "editor.action.marker.nextInFiles",
+    "when": "editorFocus && !editorReadonly"
+  },
+  {
+    "key": "shift+f8",
+    "command": "-editor.action.marker.prevInFiles",
+    "when": "editorFocus && !editorReadonly"
+  },
+  {
+    "key": "shift+alt+,",
+    "command": "editor.action.marker.prevInFiles",
+    "when": "editorFocus && !editorReadonly"
+  },
+  // navigate back when jumping to definitions/usages
+  {
+    "key": "alt+[",
+    "command": "workbench.action.navigateBack"
+  },
+  {
+    "key": "ctrl+-",
+    "command": "-workbench.action.navigateBack"
+  },
+  // navigate forward when jumping to definitions/usages
+  {
+    "key": "alt+]",
+    "command": "workbench.action.navigateForward"
+  },
+  {
+    "key": "ctrl+shift+-",
+    "command": "-workbench.action.navigateForward"
+  },
+  // toggle casing
+  {
+    "key": "cmd+k cmd+s",
+    "command": "extension.changeCase.snake"
+  },
+  {
+    "key": "cmd+k cmd+l",
+    "command": "extension.changeCase.lower"
+  },
+  {
+    "key": "cmd+k cmd+u",
+    "command": "extension.changeCase.upper"
+  },
+  {
+    "key": "cmd+k cmd+c",
+    "command": "extension.changeCase.camel"
+  },
+  {
+    "key": "cmd+k cmd+c",
+    "command": "-editor.action.commentLine"
+  },
+  {
+    "key": "shift+alt+cmd+g",
+    "command": "editor.action.selectHighlights",
+    "when": "editorFocus"
+  },
+  {
+    "key": "ctrl+cmd+g",
+    "command": "-editor.action.selectHighlights",
+    "when": "editorFocus"
+  },
+  {
+    "key": "ctrl+shift+alt+cmd+9 ctrl+shift+alt+cmd+9",
+    "command": "editor.action.inPlaceReplace.down",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "shift+cmd+.",
+    "command": "-editor.action.inPlaceReplace.down",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "cmd+k cmd+k",
+    "command": "extension.changeCase.kebab"
+  },
+  {
+    "key": "cmd+k cmd+k",
+    "command": "-editor.action.defineKeybinding",
+    "when": "editorTextFocus && !editorReadonly && editorLangId == 'jsonc'"
+  },
+  {
+    "key": "cmd+k cmd+k",
+    "command": "-keybindings.editor.defineKeybinding",
+    "when": "inKeybindings && keybindingFocus"
+  }
+]
