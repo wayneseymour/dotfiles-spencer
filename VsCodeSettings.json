@@ -1,0 +1,113 @@
+{
+  "atomKeymap.promptV3Features": true,
+
+  "breadcrumbs.enabled": true,
+
+  "diffEditor.renderSideBySide": true,
+
+  "editor.minimap.renderCharacters": false,
+  "editor.multiCursorModifier": "ctrlCmd",
+  "editor.tabSize": 2,
+  "editor.fontSize": 18,
+  "editor.renderWhitespace": "all",
+  "editor.fontFamily": "'Fira Code'",
+  "editor.fontLigatures": true,
+  "editor.minimap.enabled": false,
+  "editor.tokenColorCustomizations": {
+    "textMateRules": [
+      {
+        "name": "js object literal keys",
+        "scope": "meta.object-literal.key",
+        "settings": {
+          "foreground": "#98c379"
+        }
+      },
+      {
+        "name": "inheritted classes",
+        "scope": "entity.other.inherited-class",
+        "settings": {
+          "foreground": "#e5c07b"
+        }
+      },
+      {
+        "name": "whitespace color",
+        "scope": "entity.other",
+        "settings": {
+          "foreground": "#FF0000"
+        }
+      }
+    ],
+  },
+  "eslint.packageManager": "yarn",
+  "eslint.alwaysShowStatus": true,
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    { "language": "typescript", "autoFix": true },
+    { "language": "typescriptreact", "autoFix": true }
+  ],
+  
+  "explorer.openEditors.visible": 0,
+  "explorer.confirmDragAndDrop": false,
+
+  "extensions.ignoreRecommendations": true,
+
+  "files.watcherExclude": {
+    "**/.babelcache.json": true,
+    "**/.cache": true,
+    "**/.eslintcache": true,
+    "**/.git/objects/": true,
+    "**/build/{kibana,kibana-oss}/": true,
+    "**/.git/subtree-cache/": true,
+    "**/kibana/optimize/": true,
+    "**/node_modules/": true,
+    "**/x-pack/build/": true,
+    "**/packages/*/{target,dist}/": true
+  },
+
+  "git.autoRepositoryDetection": "openEditors",
+
+  "javascript.updateImportsOnFileMove.enabled": "never",
+  "javascript.suggest.autoImports": false,
+
+  "keyboard.touchbar.enabled": false,
+
+  "markdown.extension.toc.updateOnSave": false,
+  "[markdown]": {
+    "editor.wordWrap": "wordWrapColumn",
+    "editor.wordWrapColumn": 100,
+    "editor.quickSuggestions": false
+  },
+
+  "npm-intellisense.importLinebreak": ";\n",
+  "npm-intellisense.scanDevDependencies": true,
+
+  "problems.decorations.enabled": true,
+  "problems.autoReveal": true,
+
+  "terminal.integrated.fontSize": 16,
+  "terminal.external.osxExec": "iTerm.app",
+  "terminal.integrated.confirmOnExit": true,
+
+  "typescript.referencesCodeLens.enabled": false,
+  "typescript.implementationsCodeLens.enabled": false,
+  "typescript.updateImportsOnFileMove.enabled": "never",
+  "typescript.suggest.autoImports": false,
+  "typescript.disableAutomaticTypeAcquisition": true,
+
+  "window.zoomLevel": 0,
+
+  "workbench.colorTheme": "Material Theme Darker High Contrast",
+  "workbench.startupEditor": "newUntitledFile",
+  "workbench.colorCustomizations": {
+    "gitDecoration.ignoredResourceForeground": "#ffffff42",
+    "editorWhitespace.foreground": "#ffffff18",
+    "editorUnnecessaryCode.border": "#ec5d1a"
+  },
+  "workbench.list.automaticKeyboardNavigation": false,
+  "workbench.iconTheme": "material-icon-theme",
+
+  "typescript.tsc.autoDetect": "off",
+  "eslint.autoFixOnSave": true,
+  "grunt.autoDetect": "off"
+}
