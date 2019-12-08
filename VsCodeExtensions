@@ -5,6 +5,7 @@ blanu.vscode-styled-jsx
 christian-kohler.npm-intellisense
 christian-kohler.path-intellisense
 dbaeumer.vscode-eslint
+DotJoshJohnson.xml
 earshinov.permute-lines
 EditorConfig.EditorConfig
 eg2.tslint
@@ -27,5 +28,5 @@ whizkydee.material-palenight-theme
 william-voyek.vscode-nginx
 wmaurer.change-case
 yzhang.markdown-all-in-one
-zhuangtongfa.Material-theme
+zhuangtongfa.material-theme
 ziyasal.vscode-open-in-github
