@@ -10,6 +10,7 @@
 
 [alias]
   co = checkout
+  pum = pull upstream master --no-edit
   undo = reset HEAD^
   co = checkout
   pr = "!f() { git fetch upstream pull/$1/head && git checkout -B pr/$1 FETCH_HEAD; }; f"
