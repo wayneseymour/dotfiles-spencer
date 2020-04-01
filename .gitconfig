@@ -1,16 +1,23 @@
 [user]
-  name = spalger
-	email = email@spalger.com
+	name = spalger
+	email = spalger@users.noreply.github.com
 
 [core]
-  autocrlf = input
   excludesfile = /Users/spalger/.gitignore_global
-	pager = diff-so-fancy | less --tabs=2 -RFX
+	pager = delta --dark --plus-color="#012800" --minus-color="#340001" --theme='Solarized (dark)' | less --tabs=2 -RFX
 	precomposeUnicode = true
+
+[interactive]
+  diffFilter = delta --color-only --plus-color="#012800" --minus-color="#340001" --theme='Solarized (dark)'
 
 [alias]
   co = checkout
   pum = pull upstream master --no-edit
+  pumr = pull upstream master --no-edit --rebase
+  pullr = pull --rebase
+  trackup = branch --set-upstream-to=upstream/master
+  fin = commit --no-edit
+  amend = commit --no-edit --amend
   undo = reset HEAD^
   co = checkout
   pr = "!f() { git fetch upstream pull/$1/head && git checkout -B pr/$1 FETCH_HEAD; }; f"
@@ -64,3 +71,5 @@
 	old = red bold
 	new = green bold
 	whitespace = red reverse
+[merge]
+	renamelimit = 4000
