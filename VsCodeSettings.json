@@ -95,9 +95,7 @@
   "typescript.suggest.autoImports": false,
   "typescript.disableAutomaticTypeAcquisition": true,
 
-  "window.zoomLevel": 0,
-
-  "workbench.colorTheme": "Material Theme Darker High Contrast",
+  "window.zoomLevel": 1,
   "workbench.startupEditor": "newUntitledFile",
   "workbench.colorCustomizations": {
     "gitDecoration.ignoredResourceForeground": "#ffffff42",
@@ -109,5 +107,14 @@
 
   "typescript.tsc.autoDetect": "off",
   "eslint.autoFixOnSave": true,
-  "grunt.autoDetect": "off"
+  "grunt.autoDetect": "off",
+  "workbench.colorTheme": "Material Theme Darker High Contrast",
+  "typescript.tsserver.maxTsServerMemory": 5000,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "[xml]": {
+    "editor.defaultFormatter": "fabianlauer.vs-code-xml-format"
+  },
+  "diffEditor.ignoreTrimWhitespace": false
 }
