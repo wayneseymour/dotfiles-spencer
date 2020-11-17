@@ -73,3 +73,5 @@
 	whitespace = red reverse
 [merge]
 	renamelimit = 4000
+[pull]
+	rebase = false

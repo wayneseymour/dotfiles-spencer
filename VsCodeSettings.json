@@ -104,14 +104,19 @@
     "editorUnnecessaryCode.border": "#ec5d1a"
   },
   "workbench.list.automaticKeyboardNavigation": false,
-  "workbench.iconTheme": "material-icon-theme",
 
   "typescript.tsc.autoDetect": "off",
   "grunt.autoDetect": "off",
   "typescript.tsserver.maxTsServerMemory": 5000,
   "diffEditor.ignoreTrimWhitespace": true,
-  "workbench.colorTheme": "Noctis Viola",
+  "workbench.colorTheme": "Dracula Soft",
   "timeline.excludeSources": [
     "git-history"
-  ]
+  ],
+  "gitlens.advanced.messages": {
+    "suppressGitVersionWarning": true
+  },
+  "git.path": "/usr/local/bin/git",
+  "workbench.iconTheme": "material-icon-theme",
+  "diffEditor.maxComputationTime": 0
 }
