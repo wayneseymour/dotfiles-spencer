@@ -1,0 +1,22 @@
+tap "homebrew/bundle"
+tap "homebrew/cask"
+tap "homebrew/cask-fonts"
+tap "homebrew/core"
+
+brew "bash"
+brew "bash-completion"
+brew "python@3"
+brew "git"
+brew "git-delta"
+brew "jq"
+brew "mosh"
+brew "pyenv"
+brew "shellcheck"
+brew "trash"
+brew "watch"
+brew "wget"
+cask "font-fira-code"
+
+# necessary to build native deps for Kibana
+brew "cairo"
+brew "pango"
