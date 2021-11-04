@@ -12,10 +12,10 @@
 
 [alias]
   co = checkout
-  pum = pull upstream master --no-edit
-  pumr = pull upstream master --no-edit --rebase
+  pum = pull upstream main --no-edit
+  pumr = pull upstream main --no-edit --rebase
   pullr = pull --rebase
-  trackup = branch --set-upstream-to=upstream/master
+  trackup = branch --set-upstream-to=upstream/main
   fin = commit --no-edit
   amend = commit --no-edit --amend
   undo = reset HEAD^
@@ -75,3 +75,7 @@
 	renamelimit = 4000
 [pull]
 	rebase = false
+[init]
+	defaultBranch = main
+[gpg]
+	program = gpg

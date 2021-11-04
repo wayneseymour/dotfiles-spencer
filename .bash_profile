@@ -7,19 +7,21 @@ __spalger_dotfiles__() {
   main() {
     setup_aliases
     setup_bash_completion
+    setup_brew
     setup_env
-    setup_java
+    # setup_java
     setup_node
-    setup_go
-    setup_rust
-    setup_ruby
+    # setup_go
+    # setup_rust
+    # setup_ruby
     setup_ps1
     setup_gcloud
+    setup_pyenv
   }
 
   setup_gcloud() {
-    source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.bash.inc'
-    source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc'
+    source "$HOME/google-cloud-sdk/path.bash.inc"
+    source "$HOME/google-cloud-sdk/completion.bash.inc"
   }
 
   setup_aliases() {
@@ -32,13 +34,14 @@ __spalger_dotfiles__() {
     alias gut=git;
     alias gti=git;
     alias got=git;
-    alias "atom-"='tmpin atom';
-    alias ll='ls -1AhH';
-    alias dock='eval "$(docker-machine env)"';
   }
 
   setup_bash_completion() {
-    . "/usr/local/etc/profile.d/bash_completion.sh"
+    . "/opt/homebrew/etc/profile.d/bash_completion.sh"
+  }
+
+  setup_brew() {
+    eval "$(/opt/homebrew/bin/brew shellenv)"
   }
 
   setup_env() {
@@ -80,6 +83,13 @@ __spalger_dotfiles__() {
     source "$GITAWAREPROMPT/main.sh"
     # shellcheck disable=SC2154
     export PS1="\w \[$txtcyn\]\$git_branch\[$txtred\]\$git_dirty\[$txtrst\] \$ "
+  }
+
+  setup_pyenv() {
+    export PYENV_ROOT="$HOME/.pyenv"
+    export PATH="$PYENV_ROOT/bin:$PATH"
+    eval "$(pyenv init -)"
+    eval "$(pyenv init --path)"
   }
 
   main

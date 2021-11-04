@@ -39022,12 +39022,16 @@
 			</dict>
 			<key>Ansi 10 Color</key>
 			<dict>
+				<key>Alpha Component</key>
+				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.35646489677720017</real>
+				<real>0.37517019636652549</real>
+				<key>Color Space</key>
+				<string>sRGB</string>
 				<key>Green Component</key>
-				<real>0.88189995290000001</real>
+				<real>0.89148491621017456</real>
 				<key>Red Component</key>
-				<real>0.67126059688058637</real>
+				<real>0.57527997150216825</real>
 			</dict>
 			<key>Ansi 11 Color</key>
 			<dict>
@@ -39076,12 +39080,16 @@
 			</dict>
 			<key>Ansi 2 Color</key>
 			<dict>
+				<key>Alpha Component</key>
+				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.04123397171497345</real>
+				<real>0.0181556797326494</real>
+				<key>Color Space</key>
+				<string>sRGB</string>
 				<key>Green Component</key>
-				<real>0.88189995288848877</real>
+				<real>0.841400146484375</real>
 				<key>Red Component</key>
-				<real>0.54928803443908691</real>
+				<real>0.35222189294058687</real>
 			</dict>
 			<key>Ansi 3 Color</key>
 			<dict>
@@ -39571,7 +39579,7 @@
 			<key>Minimum Contrast</key>
 			<real>0.0</real>
 			<key>Mouse Reporting</key>
-			<true/>
+			<false/>
 			<key>Name</key>
 			<string>Default</string>
 			<key>Non Ascii Font</key>
@@ -39579,7 +39587,7 @@
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>FiraCode-Medium 15</string>
+			<string>FiraCode-Regular 15</string>
 			<key>Option Key Sends</key>
 			<integer>0</integer>
 			<key>Prompt Before Closing 2</key>
