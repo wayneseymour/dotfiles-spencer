@@ -16,7 +16,3 @@ brew "trash"
 brew "watch"
 brew "wget"
 cask "font-fira-code"
-
-# necessary to build native deps for Kibana
-brew "cairo"
-brew "pango"
