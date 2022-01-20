@@ -1,11 +1,11 @@
 [user]
-	name = spalger
-	email = spencer@elastic.co
+  name = spalger
+  email = spencer@elastic.co
 
 [core]
   excludesfile = /Users/spalger/.gitignore_global
-	pager = delta --dark --theme='Solarized (dark)' | less --tabs=2 -RFX
-	precomposeUnicode = true
+  pager = delta --dark --theme='Solarized (dark)' | less --tabs=2 -RFX
+  precomposeUnicode = true
 
 [interactive]
   diffFilter = delta --color-only --theme='Solarized (dark)'
@@ -43,7 +43,7 @@
   process = git-lfs filter-process
 
 [http]
-	cookiefile = /Users/spalger/.gitcookies
+  cookiefile = /Users/spalger/.gitcookies
 
 [push]
   default = current
@@ -54,10 +54,10 @@
   required = true
 
 [merge]
-	renamelimit = 4000
+  renamelimit = 4000
 [pull]
-	rebase = false
+  rebase = false
 [init]
-	defaultBranch = main
+  defaultBranch = main
 [gpg]
-	program = gpg
+  program = gpg
