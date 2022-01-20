@@ -1,14 +1,14 @@
 [user]
 	name = spalger
-	email = spalger@users.noreply.github.com
+	email = spencer@elastic.co
 
 [core]
   excludesfile = /Users/spalger/.gitignore_global
-	pager = delta --dark --plus-color="#012800" --minus-color="#340001" --theme='Solarized (dark)' | less --tabs=2 -RFX
+	pager = delta --dark --theme='Solarized (dark)' | less --tabs=2 -RFX
 	precomposeUnicode = true
 
 [interactive]
-  diffFilter = delta --color-only --plus-color="#012800" --minus-color="#340001" --theme='Solarized (dark)'
+  diffFilter = delta --color-only --theme='Solarized (dark)'
 
 [alias]
   co = checkout

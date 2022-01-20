@@ -11,7 +11,7 @@ __spalger_dotfiles__() {
     setup_env
     # setup_java
     setup_node
-    # setup_go
+    setup_go
     # setup_rust
     # setup_ruby
     setup_ps1
@@ -60,7 +60,8 @@ __spalger_dotfiles__() {
   }
 
   setup_go() {
-    export GOPATH="$HOME/gopath"
+    export GOROOT="/usr/local/go"
+    export GOPATH="$HOME/go"
   }
 
   setup_rust() {
