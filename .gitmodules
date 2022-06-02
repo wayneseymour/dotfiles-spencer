@@ -1,3 +1,6 @@
 [submodule "repos/git-aware-prompt"]
 	path = repos/git-aware-prompt
 	url = git@github.com:jimeh/git-aware-prompt.git
+[submodule "repos/dev-utils-raycast-scripts"]
+	path = repos/dev-utils-raycast-scripts
+	url = git@github.com:DevUtilsApp/raycast-script-commands.git

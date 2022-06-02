@@ -17,6 +17,8 @@ __spalger_dotfiles__() {
     setup_ps1
     setup_gcloud
     setup_pyenv
+
+    export HISTCONTROL=ignoredups
   }
 
   setup_gcloud() {
@@ -56,7 +58,8 @@ __spalger_dotfiles__() {
   }
 
   setup_java() {
-    source "$HOME/.jabba/jabba.sh"
+    export JABBA_HOME="$HOME/.jabba"
+    source "$JABBA_HOME/jabba.sh"
   }
 
   setup_go() {

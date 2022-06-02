@@ -4,11 +4,11 @@
 
 [core]
   excludesfile = /Users/spalger/.gitignore_global
-  pager = delta --dark --theme='Solarized (dark)' | less --tabs=2 -RFX
+  pager = delta | less --tabs=2 -RFX
   precomposeUnicode = true
 
 [interactive]
-  diffFilter = delta --color-only --theme='Solarized (dark)'
+  diffFilter = delta --color-only
 
 [alias]
   co = checkout
