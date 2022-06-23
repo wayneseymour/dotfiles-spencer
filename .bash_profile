@@ -27,15 +27,13 @@ __spalger_dotfiles__() {
   }
 
   setup_aliases() {
+    source ~/.dotfiles/aliases.sh
+
     if [ -f ~/.aliases ]; then
       source ~/.aliases
     else
       echo "NO .aliases"
     fi
-
-    alias gut=git;
-    alias gti=git;
-    alias got=git;
   }
 
   setup_bash_completion() {

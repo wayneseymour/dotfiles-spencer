@@ -61,3 +61,5 @@
   defaultBranch = main
 [gpg]
   program = gpg
+[delta]
+  line-numbers = true
