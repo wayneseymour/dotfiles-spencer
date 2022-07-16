@@ -11,6 +11,7 @@ __spalger_dotfiles__() {
     setup_env
     # setup_java
     setup_node
+    setup_bun
     setup_go
     # setup_rust
     # setup_ruby
@@ -78,6 +79,11 @@ __spalger_dotfiles__() {
     export NVM_DIR="$HOME/.nvm"
     source "$NVM_DIR/nvm.sh" # This loads nvm
     source "$NVM_DIR/bash_completion" # This loads nvm bash_completion
+  }
+
+  setup_bun() {
+    BUN_INSTALL="$HOME/.bun"
+    PATH="$BUN_INSTALL/bin:$PATH"
   }
 
   setup_ps1() {
