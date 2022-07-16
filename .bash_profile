@@ -42,6 +42,8 @@ __spalger_dotfiles__() {
   }
 
   setup_brew() {
+    export HOMEBREW_BUNDLE_FILE="$HOME/.dotfiles/Brewfile"
+    export HOMEBREW_BUNDLE_NO_LOCK=true
     eval "$(/opt/homebrew/bin/brew shellenv)"
   }
 
